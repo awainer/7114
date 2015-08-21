@@ -1,2 +1,2 @@
 #!/bin/bash
-glpsol --ranges /dev/stdout  --math $1
+glpsol  -o /dev/stdout  -m $1
