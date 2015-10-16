@@ -25,9 +25,11 @@ minimize z: sum{i in CIUDADES, j in CIUDADES : i<>j} COSTO[i,j]*Y[i,j];
 #Llego desde un solo lugar hasta la ciudad j
 s.t. llegoJ{j in CIUDADES}: sum{i in CIUDADES: i<>j} Y[i,j] = 1;
 #Voy hacia un sólo lugar desde i
-s.t. voyI{i in CIUDADES}: sum{j in CIUDADES: i<>j} Y[i,j] = 1;
+s.t. voyI{i in CIUDADES}: sum{j in CIUDADES: i<>j } Y[i,j] = 1;
+
 #Secuencia para evitar subtours
-s.t. orden{i in CIUDADES, j in CIUDADES: i<>j and i<>'A' and j<>'A'}: U[i] - U[j] + card(CIUDADES)*Y[i,j] <= card(CIUDADES) - 1;
+s.t. orden{i in CIUDADES, j in CIUDADES: i<>j and i<>'A' and j<>'A'}: U[i] - U[j] + (card(CIUDADES) - 1)  * Y[i,j] <= card(CIUDADES) - 2;
+
 # Asigno valor a Xij
 s.t. x1{i in CIUDADES, j in CIUDADES: i<>j and i<>'A' and j<>'A'}: -1000 * (1 -X[i,j]) + U[i] <= U[j];
 s.t. x2{i in CIUDADES, j in CIUDADES: i<>j and i<>'A' and j<>'A'}: U[j] <= U[i] + X[i,j] * 1000;
