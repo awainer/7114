@@ -26,7 +26,7 @@ g.add_edge('G','I')
 g.add_edge('I','E')
 g.add_edge('E','D')
 g.add_edge('D','A')
-g.graph_attr['label'] = 'Z = 15'
+g.graph_attr['label'] = 'Z = 15\nCapacidad de carga = 25'
 g.draw("solucion.png",prog='neato')
 
 
