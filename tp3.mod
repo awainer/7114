@@ -31,7 +31,7 @@ s.t. orden{i in CIUDADES, j in CIUDADES: i<>j and i<>'A' and j<>'A'}: U[i] - U[j
 
 #Restricciones de dinero en el camion, mayor o igual a cero y no mas de 13.
 s.t. dmin{i in CIUDADES: i<>'A'} : D[i] >= 0;
-s.t. dmax{i in CIUDADES: i<>'A'} : D[i] <= 13;
+s.t. dmax{i in CIUDADES: i<>'A'} : D[i] <= 25;
 
 
 #Restricciones particulares del metodo 3
@@ -44,16 +44,29 @@ solve;
 #Data segment
 data;
 
-set CIUDADES:= A B C D E F;
-param COSTO :  A B C D E F :=
-A  . 2 4 1 5 8
-B  5 . 5 7 1 3
-C  2 4 . 3 7 1
-D  2 9 2 . 8 4
-E  3 6 7 1 . 4
-F  5 7 2 6 3 .;
+set CIUDADES:= A B C D E F G H I J;
+param COSTO :  A B C D E F G H I J:=
+A  . 2 4 1 5 8 3 6 1 4
+B  5 . 5 7 1 3 9 1 5 8
+C  2 4 . 3 7 1 3 5 6 1
+D  2 9 2 . 8 4 8 3 3 5
+E  3 6 7 1 . 4 3 5 6 2
+F  5 7 2 6 3 . 1 5 6 1
+G  5 1 3 5 7 5 . 9 1 3
+H  5 9 1 8 4 7 1 . 9 4
+I  6 4 6 8 3 2 4 4 . 5
+J  9 4 8 2 5 2 5 7 5 .;
 
-param : DINEROS  := A 0 B 2 C -5 D -7 E 11 F 12;
+param : DINEROS  := A   0
+                    B   2
+                    C  -5 
+                    D  -7
+                    E  11
+                    F  12
+                    G  -10
+                    H  4
+                    I  -5
+                    J  6;
 
 end;
 
